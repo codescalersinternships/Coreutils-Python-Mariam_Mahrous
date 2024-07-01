@@ -6,11 +6,14 @@ parser.add_argument("file", type=str, help="File to read")
 args = parser.parse_args()
 try:
 	with open (args.file) as file:
-    	 lines = file.readlines()
+		lines = file.readlines()
+		for i, line in enumerate(lines):
+			if args.number:
+				print(i+1 , end= ' ')
+			print(line, end= '')
 except FileNotFoundError:
 	print("file not found")
+except Exception as e:
+    print(f"Error: {e}")
 
-for i, line in enumerate(lines):
-	if args.number:
-		print(i+1 , end= ' ')
-	print(line, end= '')
+

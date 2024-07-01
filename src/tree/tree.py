@@ -1,12 +1,18 @@
 import argparse , sys , os
 
 def visit(path, depth, max_depth):
-    files = os.listdir(path)
-    for file in files:
-        printLength(depth +1)
-        print(file)
-        if os.path.isdir(path+file) and depth < max_depth:
-            visit(path+file, depth + 1, max_depth)	
+    try:
+        files = os.listdir(path)
+        if depth < max_depth :
+            for file in files:
+                printLength(depth +1)
+                print(file)
+                if os.path.isdir(os.path.join(path, file)):
+                    visit(os.path.join(path, file), depth + 1, max_depth)	
+    except PermissionError:
+	    print("access denied")
+    except FileNotFoundError:
+	    print("file not found") 
 
 	
 def printLength(depth):
