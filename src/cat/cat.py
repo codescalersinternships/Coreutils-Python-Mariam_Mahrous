@@ -8,7 +8,7 @@ try:
 	with open (args.file) as file:
     	 lines = file.readlines()
 except FileNotFoundError:
-	print("That file was not found")
+	print("file not found")
 
 for i, line in enumerate(lines):
 	if args.number:
